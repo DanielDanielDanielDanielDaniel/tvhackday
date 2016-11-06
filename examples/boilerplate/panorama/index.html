@@ -11,12 +11,16 @@
     <script src="https://npmcdn.com/aframe-layout-component@3.0.1"></script>
     <script src="https://npmcdn.com/aframe-template-component@3.0.1"></script>
     <script src="https://github.com/aframevr/360-image-viewer-boilerplate/blob/master/components/set-image.js"></script>
-    <script src="../../docs/components/update-raycaster.js"></script>
+    <script src="../../../docs/components/raycaster.md"></script>
   </head>
   <body>
     <a-scene>
           <a-assets>
-            <img id="city" crossorigin="anonymous" src="1.jpg">
+            <a-mixin id="light" geometry="primitive: sphere; radius: 1.5"
+                     material="color: #FFF; shader: flat"
+                     light="color: #DDDDFF; distance: 120; intensity: 2; type: point">
+            </a-mixin>
+            <img id="city" crossorigin="anonymous" src="model_starry-cropped_cudNN_tvhacks10_2688px_2iters_0noise_896pyra_1mul_2div_noWM_resultOC.jpg">
             <img id="city-thumb" crossorigin="anonymous" src="thumb2.png">
             <img id="cubes-thumb" crossorigin="anonymous" src="thumb2.png">
             <img id="sechelt-thumb" crossorigin="anonymous" src="thumb2.png">
@@ -38,15 +42,16 @@
             </script>
           </a-assets>
 
-          <!-- 360-degree image. -->
+          <!-- 360-degree image.  -->
           <a-sky id="image-360" radius="10" src="#city"></a-sky>
+          
 
-          <!-- Image links. -->
+          <!-- Image links.  -->
           <a-entity id="links" layout="type: line; margin: 1.5" position="0 -1 -4">
             <a-entity template="src: #link" data-src="#cubes" data-thumb="#cubes-thumb"></a-entity>
             <a-entity template="src: #link" data-src="#city" data-thumb="#city-thumb"></a-entity>
             <a-entity template="src: #link" data-src="#sechelt" data-thumb="#sechelt-thumb"></a-entity>
-          </a-entity>
+          </a-entity> 
 
 
           <!-- Camera + cursor. -->
@@ -58,6 +63,12 @@
               event-set__2="_event: mouseleave; color: black"
               raycaster="objects: .link"></a-cursor>
           </a-entity>
+
+
+
+
+
+
         </a-scene>
   </body>
 </html>
